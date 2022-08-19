@@ -6,8 +6,9 @@
     <h4>By: {{post.author}}</h4>
     <hr>
     <p>{{post.body}}</p>
+    <div class="modify-post">
+        <a href="{% url 'post_edit' post.pk %}">+ Edit Blog Post</a>
+        <a href="{% url 'post_delete' post.pk %}">- Delete Blog Post</a>
+    </div>
 </div>
-
-<a href="{% url 'post_edit' post.pk %}">+ Edit Blog Post</a>
-<a href="{% url 'post_delete' post.pk %}">- Delete Blog Post</a>
 {% endblock content %}

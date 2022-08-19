@@ -12,19 +12,19 @@
             <header>
             <div class="nav-left">
                 <h1><a href="{% url 'home' %}">Django Blog</a></h1>
-            </div>
-            <div class="nav-right">
                 <a href="{% url 'post_new' %}">Add New Post</a>
             </div>
+            <div class="nav-right">
+                {% if user.is_authenticated %}
+                    <p>Hi {{ user.username }}!</p>
+                    <a href="{% url 'logout' %}">Log Out</a>
+                {% else %}
+                    <p>You are not logged in.</p>
+                    <a href="{% url 'login' %}">Log In</a>
+                    <a href="{% url 'signup' %}">Sign Up</a>
+                {% endif %}
+            </div>
             </header>
-            {% if user.is_authenticated %}
-                <p>Hi {{ user.username }}!</p>
-                <a href="{% url 'logout' %}">Log Out</a>
-            {% else %}
-                <p>You are not logged in.</p>
-                <a href="{% url 'login' %}">Log In</a>
-                <a href="{% url 'signup' %}">Sign Up</a>
-            {% endif %}
             <div class="container">
                 {% block content %}
                 {% endblock content %}
